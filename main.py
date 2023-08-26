@@ -9,9 +9,9 @@ string_board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 turn_array = ['Heads', 'Tails']
 coin_flip = random.randint(0, 1)
 
-player1_first = False
-player2_first = False
-cpu_first = False
+player1_first, player1_victory = False, False
+player2_first, player2_victory = False, False
+cpu_first, cpu_victory = False, False
 
 
 # ( Game Functions )
@@ -29,6 +29,7 @@ def board_display():
                 print(element, end=' | ')
         print()
     print('')
+
 def slot_check(a, b):
     # Base Condition
     if tic_tac_toe_board[a][b] == 0:
@@ -38,14 +39,103 @@ def slot_check(a, b):
         temp_b = random.randint(0, 2)
         slot_check(temp_a, temp_b)
 
-print('_________________________________________________'*2)
+def win_check(a, b, c, d, e):
+    # ( Diagonals )
+    if a[0][0] == 1 and a[1][1] == 1 and a[2][2] == 1:
+        if (b[0][0] == c and b[1][1] == c and b[2][2] == c) or (b[0][0] == d and b[1][1] == d and b[2][2] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or cpu_symbol == d:
+                print('CPU wins !!!')
+            e = True
+            return e
+    elif a[2][0] == 1 and a[1][1] == 1 and a[0][2] == 1:
+        if b[2][0] == c and b[1][1] == c and b[0][2] == c or (b[2][0] == d and b[1][1] == d and b[0][2] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or player1_symbol == c:
+                print('CPU wins !!!')
+            e = True
+            return e
+
+    # ( Rows )
+    if a[0][0] == 1 and a[0][1] == 1 and a[0][2] == 1:
+        if b[0][0] == c and b[0][1] == c and b[0][2] == c or (b[0][0] == d and b[0][1] == d and b[0][2] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or cpu_symbol == d:
+                print('CPU wins !!!')
+            e = True
+            return e
+    elif a[1][0] == 1 and a[1][1] == 1 and a[1][2] == 1:
+        if b[1][0] == c and b[1][1] == c and b[1][2] == c or (b[1][0] == d and b[1][1] == d and b[1][2] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or cpu_symbol == d:
+                print('CPU wins !!!')
+            e = True
+            return e
+    elif a[2][0] == 1 and a[2][1] == 1 and a[2][2] == 1:
+        if b[2][0] == c and b[2][1] == c and b[2][2] == c or (b[2][0] == d and b[2][1] == d and b[2][2] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or cpu_symbol == d:
+                print('CPU wins !!!')
+            e = True
+            return e
+
+    # ( Columns )
+    if a[0][0] == 1 and a[1][0] == 1 and a[2][0] == 1:
+        if b[0][0] == c and b[1][0] == c and b[2][0] == c or (b[0][0] == d and b[1][0] == d and b[2][0] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or cpu_symbol == d:
+                print('CPU wins !!!')
+            e = True
+            return e
+    if a[0][1] == 1 and a[1][1] == 1 and a[2][1] == 1:
+        if b[0][1] == c and b[1][1] == c and b[2][1] == c or (b[0][1] == d and b[1][1] == d and b[2][1] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or cpu_symbol == d:
+                print('CPU wins !!!')
+            e = True
+            return e
+    if a[0][2] == 1 and a[1][2] == 1 and a[2][2] == 1:
+        if b[0][2] == c and b[1][2] == c and b[2][2] == c or (b[0][2] == d and b[1][2] == d and b[2][2] == d):
+            if player1_symbol == c or player1_symbol == d:
+                print('Player1 Wins !!!')
+            elif player2_symbol == c or player2_symbol == d:
+                print('Player2 Wins !!!')
+            elif cpu_symbol == c or cpu_symbol == d:
+                print('CPU wins !!!')
+            e = True
+            return e
+    print()
+
+
+print('=================================================' * 2)
 print('\nWelcome To Tic Tac Toe')
 print('Developed by : Otis Ray Jackson IV')
 
 # ( Display Ruleset )
-print('_________________________________________________'*2)
+print('_________________________________________________' * 2)
 print('\n( Basic Ruleset of Tic Tac Toe )')
-print('_________________________________________________'*2)
+print('_________________________________________________' * 2)
 print('Depending on who goes first, [CPU, Player1, Player2]\tTurns granted are 5 while the latter is 4.')
 print('100% Indexed && Turn based application.\t\t\t\t\t** ( Indexes start from 0 & Ends at 2 ) ** ')
 print('Select Box Example : => \t\t\t\t\t\t\t\t0 0\t [Row, Column]\n')
@@ -91,12 +181,15 @@ elif multiplayer_decision == 'B':
 board_display()
 
 # ( In Game Attributes )
-keep_playing = False
+stop = False
 board_count = 0
 
 # ( Game Loop Logic)
 if player1_first:
     while 0 < player1_moves <= 5:
+        # ( Conditions )
+        if stop:
+            break
         temp1, temp2 = [], []
 
         # ( Ask Player 1 for Input )
@@ -111,8 +204,8 @@ if player1_first:
         player1_moves -= 1
 
         # ( Debug )
-        print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
-        print('Current Slots (str):' + str(string_board))
+        # print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
+        # print('Current Slots (str):' + str(string_board))
 
         # ( If Multiplayer ( Player Two Turn ) )
         if multiplayer_decision == 'A' and 0 < player2_moves <= 4:
@@ -155,15 +248,24 @@ if player1_first:
             player2_moves -= 1
 
             # ( Debug )
-            print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
-            print('Current Slots (str):' + str(string_board))
+            # print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
+            # print('Current Slots (str):' + str(string_board))
 
         # ( Display Board )
         board_display()
+        if multiplayer_decision == 'A':
+            stop = win_check(tic_tac_toe_board, string_board, player1_symbol, player2_symbol, end_game)
+        if multiplayer_decision == 'B':
+            stop = win_check(tic_tac_toe_board, string_board, player1_symbol, cpu_symbol, end_game)
+        # print('Game Over ??:\t' + str(end_game))
+
     # Print End Game Contents or Restart Loop
     print('\nGAME OVER !!! \n')
 elif cpu_first:
     while 0 < player2_moves <= 5:
+        # ( Conditions )
+        if stop:
+            break
         temp1, temp2 = [], []
 
         # ( CPU turn )
@@ -208,11 +310,14 @@ elif cpu_first:
 
         # ( Update Tic Tac Toe Board ( CPU ) )
         board_display()
+        stop = win_check(tic_tac_toe_board, string_board, player1_symbol, cpu_symbol, end_game)
     # Print End Game Contents or Restart Loop
     print('\nGAME OVER !!! \n')
 elif player2_first:
-    while 0 < player2_moves <=5:
+    while 0 < player2_moves <= 5:
         temp1, temp2 = [], []
+        if stop:
+            break
 
         # ( Ask Player 2 for Input )
         resp = input('(Player 2) Enter indexed location: (row) (column)\t')
@@ -226,8 +331,8 @@ elif player2_first:
         player2_moves -= 1
 
         # ( Debug )
-        print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
-        print('Current Slots (str):' + str(string_board))
+        # print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
+        # print('Current Slots (str):' + str(string_board))
 
         # ( If Multiplayer ( Player Two Turn ) )
         if multiplayer_decision == 'A' and player1_moves > 0:
@@ -242,13 +347,13 @@ elif player2_first:
             player1_moves -= 1
 
             # ( Debug )
-            print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
-            print('Current Slots (str):' + str(string_board))
+            # print('\nCurrent Slots (num):' + str(tic_tac_toe_board))
+            # print('Current Slots (str):' + str(string_board))
 
         # ( Display Board )
         board_display()
+        stop = win_check(tic_tac_toe_board, string_board, player2_symbol, player1_symbol, end_game)
     # Print End Game Contents or Restart Loop
     print('\nGAME OVER !!! \n')
 
-
-
+print('=================================================' * 2)
